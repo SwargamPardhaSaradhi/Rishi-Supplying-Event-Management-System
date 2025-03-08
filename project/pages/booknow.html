@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../images/Screenshot (1).png">
+    <title>Booking Section</title>
+    <link rel="stylesheet" href="../styles/book-now.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <script>
+
+        function toggleCheckbox(event) {
+            const checkbox = event.target.closest('.item').querySelector('.item-checkbox');
+            if (event.target !== checkbox) {
+                checkbox.checked = !checkbox.checked;
+            }
+        }
+    
+        document.querySelectorAll('.item-container').forEach(container => {
+            container.addEventListener('click', toggleCheckbox);
+        });
+
+        function handleEventTypeChange() {
+    const eventType = document.getElementById("event-type").value;
+    const otherEventContainer = document.getElementById("other-event-container");
+    if (eventType === "others") {
+        otherEventContainer.style.display = "block";
+    } else {
+        otherEventContainer.style.display = "none";
+        document.getElementById("other-event").value = ""; 
+    }
+}
+
+    </script>
+</head>
+
+<body>
+    
+<!-- Popup Structure -->
+<div id="popup" class="popup">
+  <div class="popup-content">  
+    <h2 id="rem">Booking Details</h2>
+    <center><h3 id="somef">Selected Items</h3></center>
+    <ul id="selected-items-list"></ul>
+    <center>
+    <div class="loading-spinner" id="loading-spinner"></div> </center>
+    <div id="email-exists-popup" class="custom-popup">
+        <div class="custom-popup-content">
+          <span class="custom-popup-title">Account Already Exists</span>
+          <p id="popup-message" class="custom-popup-message">We apologize for the inconvenience, but the email address you entered is already associated with an existing account.</p>
+          <p class="custom-popup-message">Please click the button below to sign in and view your details.</p>
+          <button id="sign-in-again" class="custom-btn" onclick="window.location.href = '../pages/signin.html'">Sign In Page</button>
+        </div>
+      </div>
+
+    <div id="profile-info" style="display: none; text-align: center;">
+      <img id="profile-pic" src="" alt="Profile Picture" style="border-radius: 50%; width: 80px; height: 80px;">
+      <h3 class="another" id="profile-name"></h3>
+      <h3 class="another"><strong>Email:</strong> <span id="user-email"></span></h3>
+      
+        <h3 class="yourinfo" >Your Information</h3><br>
+        <div class="form-group">
+            <label for="user-name">Full Name:</label>
+            <input type="text" id="user-name" placeholder="Enter your full name" />
+        </div>
+
+        <div class="form-group">
+            <label for="event-type">Event:</label>
+            <select id="event-type" onchange="handleEventTypeChange()">
+                <option value="" disabled selected>Select Event Type</option>
+                <option value="birthday">Birthday</option>
+                <option value="marriage">Marriage</option>
+                <option value="corporate">Corporate Event</option>
+                <option value="House Warming">House Warming</option>
+                <option value="School Event">School Event</option>
+                <option value="College Event">College Event</option>
+                <option value="Party Event">Party Event</option>
+                <option value="others">Others</option>
+            </select>
+        </div>
+        <div id="other-event-container" class="form-group" style="display: none;">
+            <label for="other-event">Please Specify:</label>
+            <input type="text" id="other-event" placeholder="Enter event details">
+        </div>
+        
+        <div class="form-group">
+            <label for="user-mobile">Mobile Number:</label>
+            <input type="text" id="user-mobile" placeholder="Enter your mobile number" />
+        </div>
+        <div class="form-group">
+            <label for="user-address">Address:</label>
+            <input type="text" id="user-address" placeholder="Enter your address" />
+        </div>
+    
+        <div class="form-group">
+            <label for="user-event-date">Event Date:</label>
+            <input type="date" id="user-event-date" />
+        </div>
+
+        <div class="form-group">
+            <label for="user-event-date">Time(Optional):</label>
+            <input type="time" id="user-time" name="user-time"  />
+        </div>
+
+        <div class="form-group1">
+            <label for="user-description">Description <span>(Optional):</span></label><br><br>
+            <textarea id="user-description" name="user-description"  placeholder="Please enter if you want to say something"></textarea>
+        </div>
+        
+
+        <button class="submit-info">Submit</button>
+    
+    </div>
+    <div id="popbet" class="popup-buttons">
+      <button class="confirm-popup">Confirm</button>
+      <button class="close-popup">Close</button>
+    </div>
+    <div id="thank-you-container">
+        <img id="thank-you-logo" src="../images/Screenshot (1).png" alt="Rishi Supplying Logo">
+        <h1>Rishi Supplying</h1>
+        <h2>Thank You for Choosing Rishi Supplying!</h2>
+        <p>We appreciate your trust in us and look forward to serving you.</p>
+        <p>Our team will get in touch with you shortly. Have a great day!</p>
+        <p>You Can View Your Details In The Below Page Click The button</p>
+        <button class="close-btn" id="close-thank-you" onclick="window.location.href = '../pages/signin.html'">
+          Sign in Page
+        </button>
+      </div>
+  </div>
+  
+</div>
+
+    
+    <header class="header">
+        <h1>Booking Section</h1>
+    </header>
+    <section class="packages-section">
+        <header>
+            <h2>Packages</h2>
+            <p>Select a package and check the items included!</p>
+        </header>
+    
+        <div class="packages-container">
+            <!-- Marriage Package -->
+            <div class="package">
+                <h3>Marriage Package</h3>
+                <p>
+                    - Comfortable seating with chairs and tables.<br><br>
+                    - Elegant German tents for a grand look.<br><br>
+                    - DJ equipment for entertainment.<br><br>
+                    Perfect for a stress-free and memorable wedding celebration.
+                </p><br>
+                <ul class="package-items"></ul>
+                <button class="package-button">Select Marriage Package</button>
+            </div>
+        
+            <!-- Birthday Package -->
+            <div class="package">
+                <h3>Birthday Package</h3>
+                <p>
+                    - Bright LED lighting for a festive vibe.<br><br>
+                    - Spacious platform for cake-cutting and activities.<br><br>
+                    - Ample seating for all your guests.<br><br>
+                    Ideal for fun-filled and unforgettable birthdays.
+                </p><br><br>
+                <button class="package-button">Select Birthday Package</button>
+            </div>
+        
+            <!-- Housewarming Package -->
+            <div class="package">
+                <h3>Housewarming Ceremony</h3>
+                <p>
+                    - Elegant seating for guests.<br><br>
+                    - High-quality mats to enhance your décor.<br><br>
+                    - Tables for serving and convenience.<br><br>
+                    Perfect for making your new beginning extra special.
+                </p><br>
+                <button class="package-button">Select Housewarming Package</button>
+            </div>
+        
+            <!-- School/College Event -->
+            <div class="package">
+                <h3>School/College Event</h3>
+                <p>
+                    - Sturdy superstructures for large gatherings.<br><br>
+                    - LED lighting to brighten the venue.<br><br>
+                    - Comfortable chairs for attendees.<br><br>
+                    Tailored for seamless and organized events.
+                </p><br><br>
+                <button class="package-button">Select School/College Event</button>
+            </div>
+        
+            <!-- Party Meeting -->
+            <div class="package">
+                <h3>Party Meeting</h3>
+                <p>
+                    - DJ systems for music and announcements.<br><br>
+                    - Decorative trusses for the perfect ambiance.<br><br>
+                    - LED lighting to enhance the atmosphere.<br><br>
+                    A stylish and convenient package for any occasion.
+                </p>
+                <button class="package-button">Select Party Meeting</button>
+            </div>
+        </div>
+        
+    </section>
+    <section style="padding: 5px; color:#3a6073;">
+       <h1> <center>If others please select items below</center></h1>
+    </section>
+    
+
+    <section class="item-list">
+        <div>
+            Available Items 
+            <div id="selected-package-message" style="display: none; margin-top: 1rem; text-align: center; color: #3a7bd5; font-size: 1.2rem; font-weight: bold;">
+               <span style="color: #3a6073;"> You have selected:</span> <span id="package-name"></span>
+            </div>
+            <br>
+            <p>Select the items you need for your event and click the book now button below</p>
+            <br>
+        </div>
+        <form action="/submit-booking" method="POST">
+            <div class="items-container">
+                <div class="item">
+                    <label for="checkbox-cooler" class="item-container" onclick="toggleCheckbox(event)">
+                        <span class="item-name">Coolers</span>
+                        <img src="../images/cooler.jpg" alt="cooler">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="checkbox-cooler-visible" class="item-checkbox">
+                        </div>
+                    </label>
+                </div>
+
+                <div class="item">
+                    <label for="checkbox-led" class="item-container" onclick="toggleCheckbox(event)">
+                        <span class="item-name">Led Lights</span>
+                        <img src="../images/ledlighting.jpeg" alt="Table">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="checkbox-led-visible" class="item-checkbox">
+                        </div>
+                    </label>
+                </div>
+                
+                <div class="item">
+                    <label for="checkbox-chair" class="item-container" onclick="toggleCheckbox(event)">
+                        <span class="item-name">Chairs</span>
+                        <img src="../images/Banquet Chair.jpeg" alt="Chair">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="checkbox-chair-visible" class="item-checkbox">
+                        </div>
+                    </label>
+                </div>
+
+                <div class="item">
+                    <label for="checkbox-superstructure" class="item-container" onclick="toggleCheckbox(event)">
+                        <span class="item-name">Super Structure</span>
+                        <img src="../images/SuperStructure.jpeg" alt="Super Structure">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="checkbox-superstructure-visible" class="item-checkbox">
+                        </div>
+                    </label>
+                </div>
+
+                
+                <div class="item">
+                    <label for="checkbox-truss" class="item-container" onclick="toggleCheckbox(event)">
+                        <span class="item-name">Truss</span>
+                        <img src="../images/truss.jpeg" alt="Truss">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="checkbox-truss-visible" class="item-checkbox">
+                        </div>
+                    </label>
+                </div>
+                
+                <div class="item">
+                    <label for="checkbox-dj" class="item-container" onclick="toggleCheckbox(event)">
+                        <span class="item-name">Dj</span>
+                        <img src="../images/dj and trusss.jpg" alt="Dj">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="checkbox-dj-visible" class="item-checkbox">
+                        </div>
+                    </label>
+                </div>
+
+                <div class="item">
+                    <label for="checkbox-platform" class="item-container" onclick="toggleCheckbox(event)">
+                        <span class="item-name">Platform</span>
+                        <img src="../images/platform.jpeg" alt="platform">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="checkbox-platform-visible" class="item-checkbox">
+                        </div>
+                    </label>
+                </div>
+
+                <div class="item">
+                    <label for="checkbox-mat" class="item-container" onclick="toggleCheckbox(event)">
+                        <span class="item-name">Green mats and Red mat</span>
+                        <img src="../images/Coolers.jpeg" alt="green Mat">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="checkbox-mat-visible" class="item-checkbox">
+                        </div>
+                    </label>
+                </div>
+
+                <div class="item">
+                    <label for="checkbox-table" class="item-container" onclick="toggleCheckbox(event)">
+                        <span class="item-name">Table</span>
+                        <img src="../images/roundtable vip chairs.jpeg" alt="Table">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="checkbox-table-visible" class="item-checkbox">
+                        </div>
+                    </label>
+                </div><div class="item">
+                    <label for="checkbox-sofa" class="item-container" onclick="toggleCheckbox(event)">
+                        <span class="item-name">Sofa</span>
+                        <img src="../images/sofa2.jpeg" alt="sofa">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="checkbox-sofa-visible" class="item-checkbox">
+                        </div>
+                    </label>
+                </div>
+
+                <div class="item">
+                    <label for="checkbox-tent" class="item-container" onclick="toggleCheckbox(event)">
+                        <span class="item-name">German Tent</span>
+                        <img src="../images/germantents.jpeg" alt="German tent">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="checkbox-tent-visible" class="item-checkbox">
+                        </div>
+                    </label>
+                </div>
+
+                <div class="item">
+                    <label for="checkbox-pendals" class="item-container" onclick="toggleCheckbox(event)">
+                        <span class="item-name">Pendals</span>
+                        <img src="../images/Pendal.jpeg" alt="Pendals">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="checkbox-pendals-visible" class="item-checkbox">
+                        </div>
+                    </label>
+                </div>
+            
+
+                <div class="item">
+                    <label for="checkbox-cooking" class="item-container" onclick="toggleCheckbox(event)">
+                        <span class="item-name">Cooking Items</span>
+                        <img src="../images/cooking items.jpg" alt="Cooking Items">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="checkbox-cooking-visible" class="item-checkbox">
+                        </div>
+                    </label>
+                </div>
+                <div class="item">
+                    <label for="checkbox-Barkadings" class="item-container" onclick="toggleCheckbox(event)">
+                        <span class="item-name">Barkadings</span>
+                        <img src="../images/bar1.JPG" alt="Barkadings">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="checkbox-Barkadings-visible" class="item-checkbox">
+                        </div>
+                    </label>
+                </div>
+                <div class="item">
+                    <label for="checkbox-Frames" class="item-container" onclick="toggleCheckbox(event)">
+                        <span class="item-name">Frames</span>
+                        <img src="../images/frames.JPG" alt="Barkadings">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="checkbox-Frames-visible" class="item-checkbox">
+                        </div>
+                    </label>
+                </div>
+                <div class="item">
+                    <label for="checkbox-SideWalls" class="item-container" onclick="toggleCheckbox(event)">
+                        <span class="item-name">Side Walls</span>
+                        <img src="../images/sidewalls.PNG" alt="Barkadings">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="checkbox-SideWalls-visible" class="item-checkbox">
+                        </div>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="button-container">
+                <button type="button" class="submit-button" >Book Now</button>
+
+
+            </div>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Your Tent House | All Rights Reserved</p>
+    </footer>
+
+    <script type="module" src="../scripts/booknow-script.js">
+        
+        </script>
+</body>
+</html>

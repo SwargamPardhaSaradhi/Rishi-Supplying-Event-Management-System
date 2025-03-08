@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../images/Screenshot (1).png ">
+    <title>Customer Information</title>
+    <link rel="stylesheet" href="../styles/signin-style.css">
+</head>
+<body>
+    <div class="logo-container">
+        <div class="logo">
+            <img src="../images/Screenshot (1).png" alt="Logo">
+        </div>
+        <h1>Customer Information</h1>
+    </div>
+
+    <!-- Welcome Message Section -->
+    <div class="welcome-message">
+        <h2>Welcome to Rishi Supplying</h2>
+        <p>Thank you for choosing Rishi Supplying! We are committed to providing the best services for your event needs. <br><br>Click below to access your details and learn more about the services we offer.</p><br> 
+       <center> <button id="sign-in-btn">Sign In</button></center>
+       <center><div class="loading-spinner" id="loading-spinner"></div> </center>
+    
+    <!-- Customer Information Container -->
+
+    <center>
+        <div class="customer-card" id="customer-card" style="display: none;">
+            <h3 id="customer-name"> <span></span></h3>
+           <p><strong>Email:</strong> <span id="customer-email">Not Available</span></p>
+            <p><strong>Phone Number:</strong> <span id="customer-phone">Not Available</span></p>
+            <p><strong>Address:</strong> <span id="customer-address">Not Available</span></p>
+            <p><strong>Event:</strong> <span id="customer-event">Not Available</span></p>
+            <p><strong>Event Date:</strong> <span id="customer-event-date">Not Available</span></p>
+            <p><strong>Event Time:</strong> <span id="customer-event-time">Not Available</span></p>
+            <p><strong>Event Description:</strong> <span id="customer-event-description">Not Available</span></p><br>
+            <p><strong>Selected Items:</strong> <span id="customer-items"></span></p>
+
+<br><br>
+            <p><strong>Status:</strong> <span id="customer-status">Not Available</span></p>
+            <button id="sign-out-btn">Sign Out</button>
+    </div></center>
+    <div id="not-registered-message" class="notreg" style="display: none;">
+        <h2>You Have Not Booked Yet</h2>
+        <strong><b><p>click the below button and book now..
+        </p></b></strong><br><br>
+        <button id="book-now-btn" onclick="window.location.href = '../pages/booknow.html'">Book Now</button>
+        <button id="signbtn">Sign Out</button>
+    </div>
+    
+<br><br><br><br>
+            <span class="someds">Contact Us</span>
+            <p>If you have any questions or need assistance, feel free to reach out to us. We are here to help!</p>
+        
+            <div class="contact-info">
+                <p><strong>Phone:</strong> <a href="tel:+91 9110521627">9110521627</a></p>
+                <p><strong>Email:</strong> <a href="mailto:rishisupplyingco@gmail.com">rishisupplyingco@gmail.com</a></p>
+                <p><strong>Address:</strong>  beside HANUMAN TEMPLE, janta Nagar, AGI Colony,Moosapet,Hyderabad,Telangana 500018</p>
+            </div>
+    </div>
+
+    <div id="loading-spinner" style="display: none;"></div>
+    
+
+    
+
+    <div class="footer">
+        <p>&copy; 2024 Rishi Supplying. All rights reserved.</p>
+    </div>
+
+    <script type="module" src="../scripts/signin-script.js"></script>
+</body>
+</html>

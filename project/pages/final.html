@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="icon" type="image/png" href="../images/Screenshot (1).png ">
+  <link rel="stylesheet" href="../styles/final-style.css">
+</head>
+<body>
+  <div>
+  <header>
+    <nav>
+      <ul class="navbar">
+        <li><a href="#" id="nav-home">Home</a></li>
+        <li><a href="#" id="nav-all">All</a></li>
+        <li><a href="#" id="nav-pending">Pending</a></li>
+        <li><a href="#" id="nav-accepted">Accepted</a></li>
+        <li><a href="#" id="nav-rejected">Rejected</a></li>
+      </ul>
+    </nav>
+    <h1>Customer Booking Dashboard</h1>
+  </header>
+  <main>
+    <main>  
+    <div id="unload">
+        <!-- Home Page Summary Section -->
+        <center><h1 id="ben" style="color: #4CAF50; margin-bottom: 30px; margin-top: -20px;">Booking Status</h1></center>
+        <section id="summary" class="hidden">
+         
+          <div class="summary-card">
+            <h2>Accepted</h2>
+            <p id="accepted-count">0</p>
+          </div>
+          <div class="summary-card">
+            <h2>Pending</h2>
+            <p id="pending-count">0</p>
+          </div>
+          <div class="summary-card">
+            <h2>Rejected</h2>
+            <p id="rejected-count">0</p>
+          </div>
+          <div class="summary-card">
+            <h2>All Bookings</h2>
+            <p id="total-count">0</p>
+          </div>
+        
+        </section>
+        <div id="events-summary">
+          <div id="todays-events" class="event-container"></div>
+          <div id="upcoming-events" class="event-container"></div>
+        </div>
+
+        <div class="search-container">
+          <input type="text" id="search-bar" placeholder="Search by name, email, or phone number" />
+          <div class="section-header">
+            <button id="add-new-booking" class="add-w-button" style="display: none;">Add New</button>
+          </div>
+          </div>
+          
+    <section>
+      <table id="data-table" >
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Event</th>
+            <th>Event Date</th>
+            <th>Event Time</th>
+            <th>Selected Items</th>
+            <th>Description</th>
+            <th>Booked Date</th>
+            <th>Booked Time</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Data will be dynamically populated here -->
+        </tbody>
+      </table>
+    </section>
+    <!-- Edit Modal Structure -->
+<!-- Edit Modal Structure -->
+<div id="edit-modal" style="display:none;">
+    <div class="modal-content">
+      <h3>Edit Customer Details</h3>
+      <form id="edit-form">
+        <label for="edit-name">Name</label>
+        <input type="text" id="edit-name" required>
+  
+        <label for="edit-phone">Phone Number</label>
+        <input type="text" id="edit-phone" required>
+  
+        <label for="edit-address">Address</label>
+        <input type="text" id="edit-address" required>
+  
+        <label for="edit-event">Event</label>
+        <input type="text" id="edit-event" required>
+  
+        <label for="edit-date">Event Date</label>
+        <input type="date" id="edit-date" required>
+  
+        <label for="edit-time">Event Time</label>
+        <input type="time" id="edit-time" > 
+  
+        <label for="edit-status">Status</label>
+        <select id="edit-status">
+          <option value="0">Pending</option>
+          <option value="1">Accepted</option>
+          <option value="2">Rejected</option>
+        </select>
+        <div class="form-group">
+          <label for="edit-description">Description</label>
+          <textarea id="edit-description" rows="4" placeholder="Enter description"></textarea>
+        </div>
+        
+        <label>Select Items</label>
+        <div id="edit-items">
+          <!-- Checkboxes will be dynamically populated here -->
+        </div>
+  
+        <button type="button" id="save-changes">Save Changes</button>
+        <button type="button" id="cancel-edit">Cancel</button>
+      </form>
+    </div>
+  </div>
+  
+  <div id="add-new-modal" class="add-new-modal">
+    <div class="add-new-content">
+      <h3>Add New Booking</h3>
+      <form id="add-new-form">
+        <label for="new-name">Name</label>
+        <input type="text" id="new-name" placeholder="Name" required />
+        
+        <label for="new-email">Email</label>
+        <input type="email" id="new-email" placeholder="Email" required />
+        
+        <label for="new-phone">Phone Number</label>
+        <input type="text" id="new-phone" placeholder="Phone Number" required />
+        
+        <label for="new-address">Address</label>
+        <textarea id="new-address" placeholder="Address" required></textarea>
+        
+        <label for="new-event">Event</label>
+        <input type="text" id="new-event" placeholder="Event" required />
+        
+        <label for="new-date">Event Date</label>
+        <input type="date" id="new-date" placeholder="Event Date" required />
+        
+        <label for="new-time">Event Time</label>
+        <input type="time" id="new-time" placeholder="Event Time" />
+        
+        <label for="new-description">Description</label>
+        <textarea id="new-description" placeholder="Description" ></textarea>
+  
+        <div id="new-items-container">
+          <label>Select Items:</label>
+          <div id="new-items">
+            <!-- Checkboxes will be dynamically generated here -->
+          </div>
+        </div>
+  
+        <div>
+          <button type="submit" id="save-add-new">Save</button>
+          <button type="button" id="cancel-add-new" class="cancel-button">Cancel</button>
+         
+        </div>
+      </form>
+    </div>
+  </div>
+  </div
+  <center><div class="loadsa"><div class="loading-spinner" id="loading-spinner"></div></div> </center>
+  </main>
+  <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js"></script>
+  <script src="../scripts/final-script.js" type="module" defer></script>
+</body>
+</html>
